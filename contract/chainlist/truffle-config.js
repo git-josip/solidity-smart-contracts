@@ -17,11 +17,10 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
-
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
-//
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+require('dotenv').config();
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const fs = require('fs');
+const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
   /**
@@ -46,6 +45,13 @@ module.exports = {
           port: 8545,
           network_id: "4224",       // Any network (default: none)
           gas: 4700000
+      },
+
+      rinkeby: {
+          provider: function() {
+              return new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io/v3/' + process.env.INFUTURA_PROJET_ID)
+          },
+          network_id: 4
       }
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.

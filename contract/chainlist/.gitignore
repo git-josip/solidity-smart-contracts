@@ -1,0 +1,5 @@
+
+.secret
+build/contracts/*
+# MAC
+.DS_Store
